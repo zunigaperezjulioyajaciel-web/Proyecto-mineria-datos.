@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Proyecto académico de inteligencia de negocios y minería de datos aplicado a Stronghand Seguridad Privada.">
+<title>Minería de datos | Stronghand Seguridad Privada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+ --navy:#10243A;--navy-2:#172F49;--slate:#26384A;--cyan:#16A6B6;--cyan-soft:#E7F6F8;
+ --amber:#D99A32;--amber-soft:#FFF5E4;--ink:#243447;--muted:#64748B;--paper:#F3F6F9;
+ --white:#FFFFFF;--line:#DFE7EE;--success:#21836F;--shadow:0 12px 32px rgba(16,36,58,.07);
+ --radius:18px;--content:1160px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 88% 8%,rgba(22,166,182,.07),transparent 24rem),radial-gradient(circle at 4% 45%,rgba(16,36,58,.035),transparent 28rem)}
+::selection{background:rgba(22,166,182,.2)}
+a{color:#087C91;text-underline-offset:3px}a:hover{color:#075B6B}
+header{position:relative;isolation:isolate;overflow:hidden;color:#fff;padding:68px max(6vw,24px) 58px;background:linear-gradient(120deg,#0C1D30 0%,#102F49 58%,#176B87 100%)}
+header:before,header:after{content:"";position:absolute;z-index:-1;border:1px solid rgba(255,255,255,.09);border-radius:50%;width:440px;height:440px;right:-110px;top:-250px}
+header:after{width:600px;height:600px;right:-195px;top:-330px}
+header .eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;color:#A8E2E8;font-weight:800}
+header .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(22,166,182,.15)}
+header h1{font-size:clamp(2.25rem,5vw,3.65rem);line-height:1.08;letter-spacing:-.045em;max-width:850px;margin:18px 0 14px;font-weight:800}
+header p{max-width:66ch;color:#D5E5EF;font-size:1.08rem;line-height:1.75;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.meta span{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);border-radius:999px;padding:6px 13px;font-size:.82rem;color:#E7F1F6}
+nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:5px;overflow-x:auto;scrollbar-width:none;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(220,230,238,.9);padding:10px max(4vw,18px);box-shadow:0 5px 20px rgba(16,36,58,.045)}nav::-webkit-scrollbar{display:none}
+nav a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;text-decoration:none;color:#526276;font-weight:650;font-size:.84rem;padding:9px 12px;border-radius:9px;transition:background .2s,color .2s}
+nav a:hover,nav a.active{background:#E8F5F7;color:#087C91}
+.nav-toggle{display:none;border:0;background:var(--navy);color:#fff;border-radius:9px;padding:9px 12px;font:inherit;font-weight:700;align-items:center;gap:8px;cursor:pointer}
+main{max-width:var(--content);margin:auto;padding:38px 26px 86px}
+section{scroll-margin-top:92px;margin:0 0 72px}
+.section-intro{position:relative;margin:0 0 25px;padding:0 0 17px;border-bottom:1px solid var(--line)}
+.section-intro .tag{display:inline-flex;align-items:center;gap:8px;color:#087C91;font-size:.73rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.section-intro h2{font-size:clamp(1.7rem,3.4vw,2.35rem);line-height:1.2;letter-spacing:-.035em;color:var(--navy);margin:8px 0 9px;font-weight:800}
+.section-intro p{color:var(--muted);max-width:76ch;margin:0;font-size:.98rem}
+h3{display:flex;align-items:flex-start;gap:10px;color:var(--navy);font-size:1.12rem;line-height:1.35;letter-spacing:-.015em;margin:0 0 13px;font-weight:750}
+h3 .heading-icon{flex:0 0 auto;color:#128A9D;margin-top:1px;width:19px;height:19px}
+h4{color:#087C91;font-size:1rem;margin:0 0 7px;font-weight:750}
+p{max-width:76ch;margin:0 0 13px}p:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:18px}
+.card{position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:25px;box-shadow:0 5px 18px rgba(16,36,58,.035);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#C9DDE5}
+.card p,.card li{font-size:.95rem}.card ul,.card ol{padding-left:1.25rem;margin:10px 0}.card li{margin:7px 0}
+.card .big{font-family:'JetBrains Mono',monospace;font-size:2.15rem;font-weight:750;color:#087C91;line-height:1.2;letter-spacing:-.05em;margin:8px 0 12px}
+.panel{background:var(--cyan-soft);border:1px solid #C8E9ED;border-left:4px solid var(--cyan);padding:18px 21px;border-radius:12px;margin:20px 0;color:#234454;font-size:.94rem}
+.muted{color:var(--muted)}.small{font-size:.84rem!important}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:14px}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px 19px 18px;box-shadow:0 4px 14px rgba(16,36,58,.025)}
+.step h4:before{counter-increment:step;content:counter(step,decimal-leading-zero);display:inline-grid;place-items:center;width:28px;height:25px;margin-right:8px;border-radius:7px;background:#E8F5F7;color:#087C91;font:700 .75rem 'JetBrains Mono',monospace}
+.table-wrap{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:13px;background:#fff}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.9rem;min-width:620px}th,td{text-align:left;padding:13px 15px;border-bottom:1px solid #E9EEF2;vertical-align:top}th{background:#EDF3F7;color:var(--navy);font-weight:750;font-size:.82rem;letter-spacing:.02em}tbody tr:hover{background:#F8FBFC}tr:last-child td{border:0}td:first-child{font-weight:650;color:#23384D}
+.barrow{display:grid;grid-template-columns:100px minmax(90px,1fr) 112px;gap:13px;align-items:center;margin:17px 0;font-size:.88rem}.barrow b:last-child{text-align:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#43576B}
+.track{height:12px;background:#E8EEF2;border-radius:30px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#176B87,#16A6B6);border-radius:30px;min-width:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:15px;margin:22px 0 26px}
+.kpi{position:relative;overflow:hidden;background:linear-gradient(145deg,#10243A,#193D59);color:#fff;padding:21px 22px;border-radius:16px;box-shadow:0 8px 22px rgba(16,36,58,.1)}
+.kpi:after{content:"";position:absolute;width:110px;height:110px;border:1px solid rgba(255,255,255,.1);border-radius:50%;right:-42px;top:-48px}
+.kpi strong{display:block;font:750 2rem/1.2 'JetBrains Mono',monospace;letter-spacing:-.05em;margin:9px 0 5px}.kpi span{font-size:.82rem;color:#C9DCE8}.kpi .kpi-icon{color:#65D1D8;width:20px;height:20px}
+#dashboard .grid .card:nth-child(1){border-top:3px solid var(--amber)}#dashboard .grid .card:nth-child(2){border-top:3px solid var(--cyan)}#dashboard .grid .card:nth-child(3){border-top:3px solid #4D8CB5}
+#dashboard .grid .card:nth-child(1) .big{color:#B87916}#dashboard .grid .card:nth-child(2) .big{color:#087C91}
+footer{background:#0C1D30;color:#D2E1EA;padding:34px max(6vw,24px);border-top:4px solid var(--cyan)}footer p{max-width:var(--content);margin:5px auto;font-size:.88rem}footer b{color:#fff}
+.refs li{margin:12px 0;overflow-wrap:anywhere;padding-left:4px}.refs ol{padding-left:1.25rem}
+:focus-visible{outline:3px solid rgba(22,166,182,.55);outline-offset:3px}
+@media(max-width:760px){header{padding:48px 22px 42px}main{padding:30px 17px 65px}section{margin-bottom:56px}.nav-toggle{display:inline-flex;flex:0 0 auto}nav{display:flex;flex-wrap:wrap;padding:9px 14px;gap:6px}nav a{display:none;flex:1 1 calc(50% - 8px);font-size:.82rem}nav.open a{display:flex}nav a:first-of-type{display:flex}nav.open a{display:flex}nav:not(.open) a:not(:first-of-type){display:none}.section-intro h2{font-size:1.8rem}.card{padding:21px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:430px){.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:16px}.kpi strong{font-size:1.55rem}.barrow{grid-template-columns:78px minmax(65px,1fr);gap:8px}.barrow b:last-child{grid-column:2;text-align:left;margin-top:-7px;font-size:.73rem}.meta span{font-size:.75rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+@media print{nav{display:none}body{background:#fff}header{background:#10243A!important;print-color-adjust:exact}.card,.step{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Producto integrador · Minería de datos</div>
+  <h1>Inteligencia de negocios y minería de datos</h1>
+  <p>Aplicación del proceso de descubrimiento de conocimiento a la información operativa de Stronghand Seguridad Privada, utilizando el sistema FOBOS como referencia.</p>
+  <div class="meta"><span>Stronghand Seguridad Privada</span><span>Caso de estudio: servicio Herbalife</span><span>Curso: Minería de datos</span></div>
+</header>
+<nav id="mainNav" aria-label="Navegación principal">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav"><i data-lucide="menu"></i><span>Secciones</span></button>
+  <a href="#teoria">Base teórica</a><a href="#kdd">Proceso KDD</a><a href="#herramientas">Herramientas</a><a href="#resultados">Resultados</a><a href="#almacen">Almacén de datos</a><a href="#dashboard">Dashboard</a><a href="#conclusiones">Conclusiones</a><a href="#referencias">Referencias</a>
+</nav>
+<main>
+<section id="teoria">
+ <div class="section-intro"><div class="tag">Sección 01</div><h2>Base teórica</h2><p>Fundamentos que permiten convertir los datos operativos en información organizada y conocimiento útil para la toma de decisiones.</p></div>
+ <div class="grid">
+  <article class="card"><h3>Sociedad de la información y del conocimiento</h3><p>La sociedad de la información se caracteriza por la generación, circulación y acceso a grandes volúmenes de datos mediante tecnologías digitales. La sociedad del conocimiento va más allá: utiliza la información, el pensamiento crítico y el aprendizaje para producir conocimiento y resolver problemas.</p><p><b>Aplicación:</b> FOBOS registra recorridos, puntos de control e incidencias. Su análisis permite transformar registros diarios en conocimiento sobre el cumplimiento del servicio.</p></article>
+  <article class="card"><h3>Inteligencia de negocios (BI)</h3><p>Conjunto de procesos, arquitecturas y herramientas que integran datos, los analizan y presentan información para apoyar decisiones. Incluye integración, almacenamiento, consultas, análisis y visualización.</p><p><b>Aplicación:</b> supervisar cumplimiento de rondas, calificaciones, puntos omitidos y comportamiento de incidencias.</p></article>
+  <article class="card"><h3>OLAP</h3><p>El procesamiento analítico en línea permite explorar datos desde distintas dimensiones y niveles de detalle. Operaciones frecuentes: <b>drill-down</b> (profundizar), <b>roll-up</b> (resumir), <b>slice</b> (filtrar una dimensión) y <b>dice</b> (combinar filtros).</p><p><b>Aplicación:</b> comparar recorridos por periodo, ubicación, personal o tipo de incidencia.</p></article>
+  <article class="card"><h3>Minería de datos</h3><p>Proceso de aplicar métodos estadísticos y computacionales para identificar patrones, relaciones, grupos o tendencias en conjuntos de datos. No sustituye el criterio humano: los resultados deben validarse e interpretarse dentro del contexto operativo.</p><p><b>Aplicación:</b> agrupar recorridos con características similares mediante K-Means.</p></article>
+ </div>
+</section>
+
+<section id="kdd">
+ <div class="section-intro"><div class="tag">Fundamento metodológico</div><h2>Proceso KDD: descubrimiento de conocimiento</h2><p>KDD (Knowledge Discovery in Databases) es un proceso iterativo para identificar conocimiento válido, novedoso, útil y comprensible. La minería de datos es una etapa dentro del proceso completo, no un sinónimo de todas sus actividades (Fayyad et al., 1996).</p></div>
+ <div class="steps">
+  <article class="step"><h4>Comprensión del dominio</h4><p>Definir el problema, los objetivos del análisis y el contexto de la organización. En este proyecto: evaluar el comportamiento de los recorridos de seguridad.</p></article>
+  <article class="step"><h4>Selección de datos</h4><p>Elegir las fuentes, registros y atributos relevantes. Se seleccionan datos operativos relacionados con duración, puntos realizados, puntos omitidos y calificación.</p></article>
+  <article class="step"><h4>Limpieza y preprocesamiento</h4><p>Revisar duplicados, valores faltantes, inconsistencias, formatos y posibles errores de captura. Se busca que los datos sean utilizables y comparables.</p></article>
+  <article class="step"><h4>Transformación</h4><p>Preparar variables, integrar fuentes y construir la vista minable. Se conservan los atributos necesarios para el objetivo analítico.</p></article>
+  <article class="step"><h4>Selección de la técnica</h4><p>Relacionar el objetivo con una tarea de minería. Para descubrir perfiles sin etiquetas previas se elige agrupamiento o clustering.</p></article>
+  <article class="step"><h4>Selección del algoritmo</h4><p>Definir el algoritmo y sus parámetros. En este caso se configura SimpleKMeans con tres grupos y distancia euclidiana.</p></article>
+  <article class="step"><h4>Minería de datos</h4><p>Ejecutar el algoritmo sobre la vista minable para encontrar patrones. K-Means asigna cada registro al centroide más cercano.</p></article>
+  <article class="step"><h4>Interpretación y evaluación</h4><p>Examinar centroides, tamaño de los grupos y coherencia de los resultados. Se interpretan los perfiles con conocimiento del proceso de rondas.</p></article>
+  <article class="step"><h4>Uso del conocimiento</h4><p>Comunicar hallazgos y convertirlos en acciones: supervisión focalizada, revisión de consignas y seguimiento de indicadores.</p></article>
+ </div>
+ <div class="panel"><b>Importante:</b> el proceso KDD no es estrictamente lineal. Si los resultados no son útiles o se detectan problemas en los datos, es posible regresar a etapas anteriores y repetir el análisis.</div>
+</section>
+
+<section id="tareas">
+ <div class="section-intro"><div class="tag">Métodos analíticos</div><h2>Tareas y técnicas de minería de datos</h2><p>La tarea define qué se desea descubrir; la técnica o algoritmo es el procedimiento utilizado para conseguirlo.</p></div>
+ <div class="table-wrap"><table><thead><tr><th>Tarea</th><th>Propósito</th><th>Técnicas / algoritmos</th><th>Ejemplo operativo</th></tr></thead><tbody>
+ <tr><td>Clasificación</td><td>Asignar registros a categorías conocidas.</td><td>Árboles de decisión, Naive Bayes, SVM.</td><td>Clasificar incidencias por nivel de riesgo.</td></tr>
+ <tr><td>Regresión</td><td>Estimar un valor numérico.</td><td>Regresión lineal, árboles de regresión.</td><td>Estimar duración de un recorrido.</td></tr>
+ <tr><td>Agrupamiento</td><td>Encontrar grupos sin categorías previas.</td><td>K-Means, clustering jerárquico, DBSCAN.</td><td>Identificar perfiles de cumplimiento de rondas.</td></tr>
+ <tr><td>Asociación</td><td>Encontrar elementos que aparecen juntos.</td><td>Apriori, FP-Growth.</td><td>Explorar coincidencias entre tipos de incidencias.</td></tr>
+ <tr><td>Detección de anomalías</td><td>Identificar observaciones inusuales.</td><td>Isolation Forest, LOF, reglas estadísticas.</td><td>Detectar recorridos con duración o cantidad de omisiones atípicas.</td></tr>
+ <tr><td>Resumen / descripción</td><td>Sintetizar características de los datos.</td><td>Estadística descriptiva, perfiles y visualización.</td><td>Mostrar promedios y frecuencias por ubicación.</td></tr>
+ </tbody></table></div>
+</section>
+
+<section id="herramientas">
+ <div class="section-intro"><div class="tag">Arquitectura y tecnología</div><h2>Herramientas y conceptos complementarios</h2></div>
+ <div class="grid">
+  <article class="card"><h3>ETL</h3><p>ETL significa extraer, transformar y cargar. Extrae datos de las fuentes; los depura, estandariza e integra; y los carga al almacén de datos. Ejemplos: Pentaho Data Integration, Talend, SQL Server Integration Services (SSIS), Azure Data Factory e IBM DataStage.</p></article>
+  <article class="card"><h3>Data Warehouse</h3><p>Almacén centralizado, integrado e histórico, diseñado principalmente para consultas y análisis, no para registrar cada transacción cotidiana. Consolida datos de diferentes fuentes para apoyar la toma de decisiones.</p></article>
+  <article class="card"><h3>Data Mart</h3><p>Repositorio analítico de alcance más reducido, enfocado en un área o proceso. Un Data Mart de operaciones de seguridad podría concentrar recorridos, evaluaciones e incidencias.</p></article>
+  <article class="card"><h3>MOLAP</h3><p>Procesamiento analítico multidimensional que almacena datos en estructuras tipo cubo, optimizadas para consultas y agregaciones. Es una alternativa de implementación OLAP; no es una herramienta ETL.</p></article>
+  <article class="card"><h3>Vista minable</h3><p>Conjunto de datos preparado específicamente para aplicar algoritmos de minería. Incluye filas observables y atributos relevantes, con tipos y valores adecuados. En este proyecto contiene 60 registros y cuatro variables numéricas.</p></article>
+  <article class="card"><h3>Herramientas de minería</h3><p>WEKA, Python (pandas y scikit-learn), R, KNIME, Orange y RapidMiner permiten preparar, explorar, modelar y evaluar datos. La herramienta se elige según el objetivo, los datos y las capacidades disponibles.</p></article>
+ </div>
+ <div class="panel"><b>Relación entre componentes:</b> las fuentes operativas alimentan procesos ETL; los datos integrados se guardan en un Data Warehouse y/o Data Marts; las consultas OLAP exploran indicadores; las vistas minables alimentan algoritmos de minería; y los resultados se comunican mediante reportes y dashboards.</div>
+</section>
+
+<section id="resultados">
+ <div class="section-intro"><div class="tag">Sección 02</div><h2>Resultados y análisis de datos</h2><p>Se presenta la aplicación de los conceptos a un caso de análisis operativo de Stronghand Seguridad Privada. Los resultados corresponden a la vista minable trabajada en la actividad de agrupamiento K-Means.</p></div>
+ <div class="kpis">
+  <div class="kpi"><strong>60</strong><span>Registros analizados</span></div>
+  <div class="kpi"><strong>4</strong><span>Atributos numéricos</span></div>
+  <div class="kpi"><strong>3</strong><span>Grupos identificados</span></div>
+  <div class="kpi"><strong>3.1658</strong><span>Suma de errores cuadráticos (SSE)</span></div>
+ </div>
+ <article class="card" id="almacen"><h3>1. Almacén de datos para generar vistas minables</h3>
+ <p>El proyecto utiliza <b>DW_Seguridad</b>, diseñado para organizar información operativa relacionada con personal, ubicaciones, recorridos, puntos de control, incidencias y evaluaciones. La estructura permite relacionar hechos operativos con dimensiones descriptivas.</p>
+ <div class="table-wrap"><table><thead><tr><th>Tabla</th><th>Función dentro del modelo</th></tr></thead><tbody>
+ <tr><td>Personal</td><td>Dimensión: identifica al personal asociado a la operación.</td></tr>
+ <tr><td>Ubicacion</td><td>Dimensión: identifica sitios o áreas del servicio.</td></tr>
+ <tr><td>TipoIncidencia</td><td>Dimensión: clasifica los tipos de incidencias.</td></tr>
+ <tr><td>PuntoControl</td><td>Dimensión: describe los puntos que integran los recorridos.</td></tr>
+ <tr><td>Recorrido</td><td>Hechos operativos: concentra información de las rondas.</td></tr>
+ <tr><td>Incidencia</td><td>Hechos: registra eventos reportados; en el diseño documentado se trabajó con 40 registros.</td></tr>
+ <tr><td>Evaluacion</td><td>Hechos: conserva valoraciones del desempeño operativo.</td></tr>
+ </tbody></table></div>
+ <p class="small muted">La tabla Incidencia y sus 40 registros corresponden a una actividad anterior del almacén; no deben confundirse con los 60 registros de la vista minable usada para K-Means.</p>
+ </article>
+ <article class="card"><h3>2. Vista minable: Stronghand_Agrupamiento_KMeans</h3>
+ <p>La vista minable reúne 60 observaciones y cuatro atributos utilizados para describir el comportamiento de los recorridos.</p>
+ <div class="table-wrap"><table><thead><tr><th>Atributo</th><th>Significado</th><th>Tipo</th></tr></thead><tbody>
+ <tr><td>Duracion_Minutos</td><td>Tiempo empleado para completar el recorrido.</td><td>Numérico</td></tr>
+ <tr><td>Puntos_Realizados</td><td>Cantidad de puntos de control completados.</td><td>Numérico</td></tr>
+ <tr><td>Puntos_Omitidos</td><td>Cantidad de puntos de control no completados.</td><td>Numérico</td></tr>
+ <tr><td>Calificacion</td><td>Valoración asignada al recorrido.</td><td>Numérico</td></tr>
+ </tbody></table></div>
+ <p><b>Preparación:</b> se seleccionaron atributos relacionados con tiempo, cumplimiento y evaluación. Al tratarse de K-Means con distancia euclidiana, es importante revisar las escalas de las variables, porque las de mayor magnitud pueden influir más en la distancia. La estandarización debe documentarse si se aplica; no se afirma que se haya aplicado en esta ejecución.</p>
+ </article>
+ <article class="card"><h3>3. Herramientas utilizadas en el análisis</h3>
+ <ul><li><b>FOBOS:</b> sistema operativo de referencia para los registros digitales de rondas e incidencias.</li><li><b>MySQL Workbench 8.0 CE:</b> administración y consulta del almacén DW_Seguridad y preparación de datos.</li><li><b>WEKA:</b> ejecución del algoritmo SimpleKMeans y revisión de centroides y distribución de clústeres.</li></ul>
+ </article>
+ <article class="card"><h3>4. Técnica y configuración del análisis</h3>
+ <p>Se utilizó <b>agrupamiento no supervisado K-Means</b>. El algoritmo divide las observaciones en K grupos y asigna cada registro al centroide más cercano, buscando reducir la variación interna de los grupos.</p>
+ <div class="table-wrap"><table><tbody>
+ <tr><th>Algoritmo</th><td>SimpleKMeans (WEKA)</td></tr><tr><th>Número de clústeres</th><td>3</td></tr><tr><th>Distancia</th><td>Euclidiana</td></tr><tr><th>Máximo de iteraciones</th><td>500</td></tr><tr><th>Semilla</th><td>10</td></tr><tr><th>Instancias</th><td>60</td></tr><tr><th>Iteraciones reportadas</th><td>9</td></tr><tr><th>SSE</th><td>3.1658334383</td></tr>
+ </tbody></table></div>
+ </article>
+</section>
+
+<section id="dashboard">
+ <div class="section-intro"><div class="tag">Visualización gerencial</div><h2>Panel gerencial (Dashboard)</h2><p>Distribución de recorridos por grupo y características promedio de cada perfil. Los gráficos representan los resultados del modelo K-Means recuperados de la actividad anterior.</p></div>
+ <article class="card">
+  <h3>Distribución de los 60 recorridos</h3>
+  <div class="barrow"><b>Clúster 0</b><div class="track"><div class="fill" style="width:11.67%"></div></div><b>7 (11.67%)</b></div>
+  <div class="barrow"><b>Clúster 1</b><div class="track"><div class="fill" style="width:46.67%"></div></div><b>28 (46.67%)</b></div>
+  <div class="barrow"><b>Clúster 2</b><div class="track"><div class="fill" style="width:41.67%"></div></div><b>25 (41.67%)</b></div>
+  <p class="small muted">Las barras muestran la proporción de registros asignados a cada grupo.</p>
+ </article>
+ <article class="card">
+  <h3>Centroides: características promedio por grupo</h3>
+  <div class="table-wrap"><table><thead><tr><th>Grupo</th><th>Duración (min)</th><th>Puntos realizados</th><th>Puntos omitidos</th><th>Calificación</th><th>Registros</th></tr></thead><tbody>
+  <tr><td>Clúster 0</td><td>55.86</td><td>7.86</td><td>1.14</td><td>3.76</td><td>7</td></tr>
+  <tr><td>Clúster 1</td><td>46.14</td><td>9.00</td><td>0.00</td><td>4.61</td><td>28</td></tr>
+  <tr><td>Clúster 2</td><td>62.52</td><td>9.00</td><td>0.00</td><td>4.69</td><td>25</td></tr>
+  </tbody></table></div>
+ </article>
+ <div class="grid">
+  <article class="card"><h3>Clúster 0 · Atención prioritaria</h3><div class="big">11.67%</div><p>Es el grupo más pequeño. Presenta menor cantidad promedio de puntos realizados, omisiones y la calificación promedio más baja (3.76). Conviene revisar las condiciones de estos recorridos y validar las causas de las omisiones.</p></article>
+  <article class="card"><h3>Clúster 1 · Cumplimiento eficiente</h3><div class="big">46.67%</div><p>Es el grupo más numeroso. Registra nueve puntos realizados, cero omitidos y una duración promedio de 46.14 minutos. Representa un perfil de cumplimiento completo con menor duración promedio.</p></article>
+  <article class="card"><h3>Clúster 2 · Cumplimiento completo</h3><div class="big">41.67%</div><p>Presenta nueve puntos realizados y cero omitidos, con calificación promedio de 4.69. Su duración promedio es de 62.52 minutos, superior a la de los otros grupos. Es conveniente estudiar si responde a rutas más extensas o condiciones particulares.</p></article>
+ </div>
+ <div class="panel"><b>Lectura gerencial:</b> 53 de 60 recorridos (88.33%) se ubican en grupos con nueve puntos realizados y cero omisiones. Los siete registros del clúster 0 concentran la señal de atención prioritaria. Antes de tomar medidas, se recomienda revisar los registros individuales, el contexto del servicio y la calidad de captura.</div>
+</section>
+
+<section id="conclusiones">
+ <div class="section-intro"><div class="tag">Cierre del proyecto</div><h2>Conclusiones y propuestas de mejora</h2></div>
+ <article class="card"><p>El desarrollo del proyecto permite reconocer la importancia de organizar los datos operativos antes de aplicar técnicas de minería. El almacén DW_Seguridad proporciona una estructura para relacionar personal, ubicaciones, recorridos, puntos de control, incidencias y evaluaciones. A partir de una vista minable fue posible analizar 60 recorridos mediante K-Means e identificar tres perfiles con características diferentes.</p>
+ <p>El resultado más relevante es la identificación de un grupo de siete recorridos con mayor cantidad promedio de omisiones y menor calificación. Este hallazgo puede orientar una revisión focalizada, sin asumir automáticamente que exista incumplimiento deliberado. Los otros dos grupos muestran recorridos sin omisiones, diferenciados principalmente por su duración promedio.</p>
+ <h3>Acciones recomendadas</h3><ol><li>Revisar individualmente los siete registros del clúster 0 para identificar causas y validar evidencias.</li><li>Comparar duración y puntos de control por ubicación, turno y condiciones del servicio.</li><li>Verificar la calidad de los datos y documentar cualquier tratamiento de valores faltantes o escalas.</li><li>Dar seguimiento periódico a los indicadores de cumplimiento, omisiones y calificación.</li><li>Actualizar la vista minable y repetir el análisis con nuevos periodos para comprobar si los perfiles se mantienen.</li></ol>
+ <p><b>Alcance:</b> los clústeres describen similitudes estadísticas en los datos disponibles; no prueban por sí solos las causas del comportamiento ni sustituyen la supervisión operativa.</p></article>
+</section>
+
+<section id="referencias">
+ <div class="section-intro"><div class="tag">Fuentes de consulta</div><h2>Referencias bibliográficas (APA 7)</h2><p>Fuentes académicas y técnicas para sustentar los conceptos de KDD, inteligencia de negocios, ETL y minería de datos.</p></div>
+ <article class="card refs"><ol>
+ <li>Fayyad, U., Piatetsky-Shapiro, G., & Smyth, P. (1996). From data mining to knowledge discovery in databases. <i>AI Magazine, 17</i>(3), 37–54. https://doi.org/10.1609/aimag.v17i3.1230</li>
+ <li>IBM. (s. f.). <i>Terminología de inteligencia empresarial</i>. IBM Documentation. https://www.ibm.com/docs/es/order-management-sw/10.0.0?topic=intelligence-business-terminology</li>
+ <li>IBM. (s. f.). <i>What is ETL (extract, transform, load)?</i> https://www.ibm.com/think/topics/etl</li>
+ <li>Witten, I. H., Frank, E., Hall, M. A., & Pal, C. J. (2016). <i>Data mining: Practical machine learning tools and techniques</i> (4th ed.). Morgan Kaufmann.</li>
+ <li>Universidad de Waikato. (s. f.). <i>WEKA: The Waikato Environment for Knowledge Analysis</i>. https://www.cs.waikato.ac.nz/ml/weka/</li>
+ </ol>
+ <p class="small muted">Nota académica: agrega también las referencias exactas de los materiales y lecturas obligatorias proporcionados por tu asesor durante el curso. Si se incorporan capturas, tablas o datos adicionales, identifica su procedencia. Los resultados numéricos del análisis se presentan como resultados del trabajo práctico previo del proyecto Stronghand.</p>
+ </article>
+</section>
+</main>
+<footer><p><b>Proyecto final de minería de datos · Stronghand Seguridad Privada</b></p><p>Documento académico de apoyo. La información operativa se presenta con fines educativos y de análisis; evita publicar datos personales, identificadores, fotografías o información confidencial del servicio.</p></footer>
+<script>
+(function(){
+ const nav=document.getElementById('mainNav');
+ const toggle=nav && nav.querySelector('.nav-toggle');
+ if(toggle){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));const label=toggle.querySelector('span');if(label)label.textContent=open?'Cerrar menú':'Secciones';});}
+ const iconMap=[
+  [/sociedad|inteligencia de negocios|olap|minería de datos/i,'brain-circuit'],
+  [/comprensión|selección|limpieza|transformación|algoritmo|minería de datos|interpretación|uso del conocimiento/i,'workflow'],
+  [/tareas y técnicas/i,'network'],[/etl/i,'workflow'],[/data warehouse|data mart|almacén/i,'database'],[/molap/i,'layers'],[/vista minable/i,'table-2'],[/herramientas/i,'wrench'],
+  [/herramientas utilizadas/i,'monitor-cog'],[/técnica y configuración/i,'sliders-horizontal'],[/distribución/i,'chart-no-axes-column-increasing'],[/centroides/i,'chart-scatter'],[/clúster 0/i,'alert-triangle'],[/clúster 1/i,'shield-check'],[/clúster 2/i,'route'],[/acciones recomendadas/i,'clipboard-check'],[/conclusiones/i,'target'],[/referencias/i,'book-open']
+ ];
+ document.querySelectorAll('.card h3').forEach(h=>{if(h.querySelector('.heading-icon'))return;const text=h.textContent.trim();let name='file-chart-column';for(const [re,ic] of iconMap){if(re.test(text)){name=ic;break;}}const i=document.createElement('i');i.setAttribute('data-lucide',name);i.className='heading-icon';i.setAttribute('aria-hidden','true');h.prepend(i);});
+ document.querySelectorAll('.section-intro .tag').forEach((tag,index)=>{const names=['book-open','workflow','network','database','chart-no-axes-combined','flag','book-open'];const i=document.createElement('i');i.setAttribute('data-lucide',names[index%names.length]);i.setAttribute('aria-hidden','true');i.style.width='15px';i.style.height='15px';tag.prepend(i);});
+ document.querySelectorAll('.kpi').forEach((k,index)=>{const names=['database','list-checks','network','activity'];const i=document.createElement('i');i.setAttribute('data-lucide',names[index%names.length]);i.className='kpi-icon';i.setAttribute('aria-hidden','true');k.prepend(i);});
+ const links=[...document.querySelectorAll('nav a[href^="#"]')];
+ const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));}});},{rootMargin:'-25% 0px -65% 0px'});sections.forEach(section=>observer.observe(section));}
+ links.forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');if(toggle){toggle.setAttribute('aria-expanded','false');const label=toggle.querySelector('span');if(label)label.textContent='Secciones';}}));
+ if(window.lucide)lucide.createIcons();
+})();
+</script>
+</body>
+</html>
